@@ -1,0 +1,84 @@
+********************************
+********************************
+** ECSE330_SPICE_PROJECT
+**
+** ECSE 330 SPICE PROJECT
+** Desgined by Ali Sharif, 260681986
+**
+** Tested in LTspice XVII
+********************************
+********************************
+
+********************************
+* POWER SUPPLY AND REGULATOR
+********************************
+* Description: Produces regulated
+*  output of 18 Volts
+Vsup 1 0 SINE(0 169.7 60)
+Rsup 1 2 300
+Lp 2 0 100
+K Lp Ls 1
+Ls 3 4 3.125
+D1 0 3 1N4148
+D2 0 4 1N4148
+D3 3 6 1N4148
+D4 4 6 1N4148
+C1 6 0 100u
+R1 6 Vdd 395
+Rz Vdd 13 4
+Vz 13 0 17.914
+C2 Vdd 0 10p
+********************************
+* END POWER SUPPLY AND REGULATOR
+********************************
+
+********************************
+* AMPLIFIER
+********************************
+M1 10 8 9 9 CD4007
+RD Vdd 10 3.2316e5
+RS 9 0 2.5247e3
+CS 9 0 100u
+Ra Vdd 8 1.4971e5
+Rb 8 0 25k
+C3 11 8 10u
+Vsig 11 0 AC 0.05 0
+********************************
+* END AMPLIFIER
+********************************
+
+********************************
+* ADC LOAD EQUIVALENT
+********************************
+RL 10 0 1meg
+CL 10 0 10p
+********************************
+* END ADC EQUIVALENT
+********************************
+
+* Analysis Requests
+*.tran 20us 1.0001 1
+.ac dec 100 1 100k
+
+********************************
+* MODELS FOR COMPONENTS
+********************************
+* 1N4148 Signal Diode
+.model 1N4148  D (
++ Is=5.84n N=1.94 Rs=.7017
++ Ikf=44.17m Xti=3 Eg=1.11
++ Cjo=.95p M=.55 Vj=.75
++ Fc=.5 Isr=11.07n Nr=2.088
++ Bv=100 Ibv=100u Tt=11.07n )
+*****
+* CD4007 NMOS transistor SPICE model
+.model CD4007 NMOS (
++ Level=1    Gamma= 0   W=30u  L=10u
++ Tox=1200n  Phi=.6     Rs=0  Kp=111u
++ Vto=2.0  Lambda=0.01
++ Rd=0 Cbd=2.0p   Cbs=2.0p  Pb=.8
++ Cgso=0.1p Cgdo=0.1p  Is=16.64p  N=1 )
+********************************
+* END MODELS FOR COMPONENTS
+********************************
+.end

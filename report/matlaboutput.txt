@@ -1,0 +1,16 @@
+Gains =
+  -36.5647  -34.8702  -33.3258
+output_resistances =
+   1.0e+06 *
+    3.0268    2.6535    2.3452
+bias_points =
+    2.5455    2.5758    2.6061
+drain_resistances =
+   1.0e+05 *
+    3.6863    3.2316    2.8562
+source_resistances =
+   1.0e+03 *
+    2.8799    2.5247    2.2314
+biasing_resistors =
+   1.0e+05 *
+    1.5179    1.4971    1.4767

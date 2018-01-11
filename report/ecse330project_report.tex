@@ -1,0 +1,1055 @@
+
+%% bare_jrnl.tex
+%% V1.3
+%% 2007/01/11
+%% by Michael Shell
+%% see http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.7 or later) with an IEEE journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices can trigger bugs that do  ***
+% *** not appear when using other class files.                            ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex
+%%*************************************************************************
+
+% Note that the a4paper option is mainly intended so that authors in
+% countries using A4 can easily print to A4 and see how their papers will
+% look in print - the typesetting of the document will not typically be
+% affected with changes in paper size (but the bottom and side margins will).
+% Use the testflow package mentioned above to verify correct handling of
+% both paper sizes by the user's LaTeX system.
+%
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+\documentclass[journal]{IEEEtran}
+\usepackage{blindtext}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{pstricks}
+\usepackage{tikz}
+\usepackage[justification=centering]{caption}
+\usepackage{float}
+\usepackage{pgfplots}
+\usepgfplotslibrary{units}
+\usepackage{listings}
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+%\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+% not currently provide for hyperlinked citations.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
+% epslatex.pdf at: http://www.ctan.org/tex-archive/info/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\usepackage[tight,footnotesize]{subfigure}
+% subfigure.sty was written by Steven Douglas Cochran. This package makes it
+% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
+% work, it is a good idea to load it with the tight package option to reduce
+% the amount of white space around the subfigures. subfigure.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/obsolete/macros/latex/contrib/subfigure/
+% subfigure.sty has been superceeded by subfig.sty.
+
+
+
+%\usepackage[caption=false]{caption}
+%\usepackage[font=footnotesize]{subfig}
+% subfig.sty, also written by Steven Douglas Cochran, is the modern
+% replacement for subfigure.sty. However, subfig.sty requires and
+% automatically loads Axel Sommerfeldt's caption.sty which will override
+% IEEEtran.cls handling of captions and this will result in nonIEEE style
+% figure/table captions. To prevent this problem, be sure and preload
+% caption.sty with its "caption=false" package option. This is will preserve
+% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later 
+% (recommended due to many improvements over 1.2) of subfig.sty supports
+% the caption=false option directly:
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+% The latest version and documentation of caption.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Documentation is contained in the stfloats.sty comments as well as in the
+% presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
+% does not allow \baselineskip to stretch. Authors submitting work to the
+% IEEE should note that IEEE rarely uses double column equations and
+% that authors should try to avoid such use. Do not be tempted to use the
+% cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
+% not format its papers in such ways.
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley and Jeff Goldberg.
+% This package may be useful when used in conjunction with IEEEtran.cls'
+% captionsoff option. Some IEEE journals/societies require that submissions
+% have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.3.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% For subfigure.sty:
+% \let\MYorigsubfigure\subfigure
+% \renewcommand{\subfigure}[2][\relax]{\MYorigsubfigure[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat/subfig command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/endfloat/
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
+% Read the url.sty source comments for usage information. Basically,
+% \url{my_url_here}.
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{ECSE 330 SPICE Project}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+
+\author{Ali~Sharif~260681986}
+
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~6, No.~1, January~2007}%
+%{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Journals}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2007 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+
+\begin{abstract}
+%\boldmath
+%\blindtext[1]
+Amplification of a \SI{50}{\milli\volt} sinusoidal wave from a transducer can be accomplished using an NMOS transistor by establishing appropriate DC operating points. We wish to produce a signal between \numrange{2}{6}\si{\volt}. To accomplish this a regulated \SI{18}{\volt} power supply was created using a zener diode. The result of this design was a single stage amplifier with an effective gain of approximately \SI[per-mode=symbol]{-37}{\volt\per\volt} and a bandwidth of \SI{9900}{\hertz}. The final output signal stretched from \numrange{2.1}{5.8}\si{\volt}
+\end{abstract}
+% IEEEtran.cls defaults to using nonbold math in the Abstract.
+% This preserves the distinction between vectors and scalars. However,
+% if the journal you are submitting to favors bold math in the abstract,
+% then you can use LaTeX's standard command \boldmath at the very start
+% of the abstract to achieve this. Many IEEE journals frown on math
+% in the abstract anyway.
+
+
+\tableofcontents
+
+\section{Requirements}
+We are given a transducer that produces a \SI{50}{\milli\volt} sinusoidal output with an unknown DC bias. The AC component of this signal needs to be amplified and biased into the range \SI{2}{\volt} to \SI{6}{\volt}. Additionally, the amplifier should have a constant amplification and bias for frequencies from \SI{0.1}{\kilo\hertz} to \SI{10}{\kilo\hertz}.
+
+The components of the system are as follows:
+\begin{enumerate}
+    \item Power Supply
+    \begin{enumerate}
+        \item Step Down Transformer
+        \item Rectifier
+        \item Filter
+        \item Regulator
+    \end{enumerate}
+    \item Amplification
+    \begin{enumerate}
+        \item Coupling
+        \item DC Bias
+        \item Amplifier
+    \end{enumerate}
+\end{enumerate}
+
+We will begin our design with a top down approach. This will allow us to define our dependencies better.
+
+The transistor we are provided is a CD4007 NMOSFET. The transistor's manufacturing parameters are as follows:
+
+\begin{enumerate}
+	\item $k_n^{'}=\SI{111}{\micro\ampere\per\volt\squared}$
+	\item $W=\SI{30}{\micro\meter}$
+	\item $L=\SI{10}{\micro\meter}$
+	\item $V_t=\SI{2}{\volt}$
+	\item $k_n = k_n^{'} \frac{W}{L} = \SI{333}{\micro\ampere\per\volt\squared}$
+\end{enumerate}
+
+\section{Amplifier}
+In order to amplify a \SI{50}{\milli\volt} signal to \SI{2}{\volt} signal we need the amplifier's gain to be close to \SI[per-mode=symbol]{40}{\volt\per\volt}. We can model the load, an ADC, as a \SI{10}{\mega\ohm} resistor and \SI{10}{\pico\farad} capacitor in parallel.
+
+\begin{figure}[H]
+	\centering
+	\input amp.m4.tex
+	\caption{CS Amplifier with Source Impedance\cite{roberts_2017_amps}}
+	\label{amp}
+\end{figure}
+
+We have to select the resistors to achieve the gain we need. The three design parameters are $V_D$, $V_G$, and $V_S$. 
+
+Using some intuition we can select $V_S$ to be small so as to approximate a regular common source amplifier. However, we cannot set it to zero otherwise we would have a degenerate amplifer. This makes the gain of the circuit highly susceptible to changes in temperature. Additionally, $R_S$ and $C_S$ improve the bandwidth of the amplifier. Without these components, signals at low frequencies would experience greater attentuation that those at higher frequencies.
+
+The capacitor $C_3$ is a coupling capacitor and we select a standard value of \SI{1}{\micro\farad}. This is a good trade-off between the RC constant of the coupling capacitor and the attentuation at lower frequencies.
+
+The resistors $R_a$ and $R_b$ are used to setup the DC bias point of the MOSFET's gate. I will show how I selected the values for these resistors as well as $R_D$ and $R_S$ using DC operating point analysis.
+
+\subsection{DC Operating Point}
+The first step is to establish $V_D$. Since the signal must be present between \SI{2}{\volt} and \SI{6}{\volt} we need to select a value within those boundaries. Selecting \SI{4}{\volt} is normally ideal as that allows to use a gain of \SI[per-mode=symbol]{40}{\volt\per\volt} to fill the entire range. However, due to the load of the ADC, we will need a higher DC operating point. I will select $V_D = \SI{5.2}{\volt}$.
+
+Since I want to approximate a typical common source amplifier I will select $V_S = \SI{0.1}{\volt}$ This will provided sufficient compromise between degeneration and our approximation.
+
+The final step is to select $V_G$, our quiescient point. In order to facilitate this I have written a MATLAB script to calculate all possible arrangements of the component values for multiple value of $V_G$. Then we can select all solutions that produce a gain between \SI[per-mode=symbol]{40}{\volt\per\volt} and \SI[per-mode=symbol]{30}{\volt\per\volt}. The results of the compution are presented in the appendix. For the complete script and its original output, please see the appendix.
+
+We select $V_G = \SI{2.5758}{\volt}$. Now that we have our DC operating point established we can calculate the values of our resistors.
+
+$$ I_D = \frac{1}{2} k_n (V_G - V_S - V_t)^2 (1 + \lambda V_{DS}) \approx \SI{39.62}{\micro\ampere} $$
+
+$$ R_D = \frac{V_{dd} - V_D}{I_D} \approx \SI{323.07}{\kilo\ohm} $$
+
+$$ R_S = \frac{V_S}{I_D} \approx \SI{2.524}{\kilo\ohm} $$
+
+For our bias resistors we have additional requirements. The input resistance of the amplifier must be greate than \SI{20}{\kilo\ohm}. Thus we must select $R_a$ and $R_b$ to satisfy these conditions.
+
+$$ \left( \SI{18}{\volt} \left( \frac{R_b}{R_b + R_a} \right) = \SI{2.5758}{\volt} \right) \land \left( \frac{R_b R_a}{R_b + R_a} > \SI{20}{\kilo\ohm} \right) $$
+
+We will select $R_b = \SI{25}{\kilo\ohm}$ and $R_a = \SI{149.71}{\kilo\ohm}$ to satisfy these conditions.
+
+The value of $C_S$ has been chosen as \SI{100}{\micro\farad}.
+
+We can now calculate the transconductance, $g_m$, and the output resistance, $r_o$, for the small signal model calculations.
+
+$$ g_m = \frac{2 I_D}{V_G - V_S - V_t} \approx \SI{166.54}{\micro\ampere\per\volt} $$
+
+$$ r_o = \frac{V_A + V_{DS}}{I_D} \approx \SI{2.6527}{\mega\ohm} $$
+
+This completes the DC operating point analysis of the transistor.
+
+\subsection{Small Signal Model}
+
+\begin{figure}[H]
+	\centering
+	\input smallsignal.m4.tex
+	\caption{Small Signal Model.}
+	\label{ss}
+\end{figure}
+
+The small signal model for the amplifier can be seen above. From figure we can see that the open circuit gain of this amplifier is.
+
+$$ |G_o| = \frac{g_m R_D r_o}{R_D + R_S + r_o + g_m r_o R_S} \approx \SI{34.8702}{\volt\per\volt}$$
+
+The effective gain with a \SI{10}{\mega\ohm} load is
+
+$$ |G_l| = \frac{g_m r_o \left( R_D \mathbin{\|} R_L \right)}{\left( R_D \mathbin{\|} R_L \right) + R_S + r_o + g_m r_o R_S} \approx \SI{33.7486}{\volt\per\volt} $$
+
+This is only valid at low frequencies where the capacitor acts an open circuit. For extremely high frequencies the signal is attentuated. However, due to the addition of $C_S$ the attenuation will be negligible and we will observe this in the simulation section.
+
+Additionally, in the simulations, the signal fills the range \SI{2.1}{\volt} to \SI{5.8}{\volt} using this gain.
+
+\section{Power Supply}
+The power supply would need to power both the transducer and the amplifier. The client's requirements are as follows:
+\begin{itemize}
+\item Line regulation $> \SI[per-mode=symbol]{10}{\milli\volt\per\volt}$
+\item Load regulation $> \SI[per-mode=symbol]{-5}{\milli\ampere\per\milli\volt}$
+\end{itemize}
+\subsection{Step Down Transformer}
+Mains power supply is provided at \SI{120}{\volt} \SI{60}{\hertz} rms. This corresponds to \SI{169.7}{\volt} peak-to-peak \SI{60}{\hertz}. For our requirements we need to step down the voltage to approximately \SI{30}{\volt} \SI{60}{\hertz}.
+
+$$ \sqrt{ \frac{L_p}{L_s}}  = \frac{V_p}{V_s} = \frac{169.7}{30} \approx 5.6597 $$
+
+To satisfy this we select inductances $L_p = \SI{100}{\henry}$ and $L_s = \SI{3.125}{\henry}$. This will ensure that the AC load from the mains supply mostly drops accross the primary coil. We also select a coupling coefficient $K = 1$.
+
+\begin{figure}[H]
+	\centering
+	\input transformer.m4.tex
+	\caption{Step Down Transformer Configuration.}
+	\label{t1}
+\end{figure}
+
+From the above figure, we can see that $V_p \approx V_{sup}$ due to the large inductance of the primary coil. Thus $V_s \approx \SI{30}{\volt} \sin(2\pi 60t)$. Assuming that $R_{sup} = \SI{300}{\ohm}$.
+
+\subsection{Rectifier and Filter}
+Now that we have a sufficient AC sinusoidal we now need to convert the AC components into DC components. The first step in this proces is rectification. We will use a full bridge rectifier.
+
+\begin{figure}[H]
+	\centering
+	\input rectifierFilter.m4.tex
+	\caption{Rectifier and Filter Configuration}
+	\label{rf1}
+\end{figure}
+
+The capacitor $C_1$ will be assigned a value of \SI{100}{\micro\farad}. This should proved sufficient stabilisation of the voltage for the next stage, regulation. The output of this circuit is $V_{C1}$ and the input is $V_S$.
+
+We can calculate the average value of $V_{C1}$ using the following method. The input sine wave is \SI{60}{\hertz}, hence if we take one quarter of the period, the capacitor will be discharging in this period.
+
+$$ T_0 = \frac{1}{4 \cdot 60} \approx \SI{4.17}{\milli\second} $$
+
+$$ V_{C1} = 30 - \exp \left( \frac{-0.00417}{100 \cdot 10_{-6} \cdot 395} \right) \approx \SI{26.99435}{\volt} $$
+
+However, the capacitor will also be discharging on the upswing of the sinusoidal input, at least until it reahces \SI{26.99435}{\volt}. So we can calculate the time taken for this as
+
+$$ 30 \sin\left( 2 \pi 60 t \right) = 26.99435 \Longrightarrow t \approx \SI{5.364}{\milli\second} $$
+
+Thus the actual minimum value of $V_{C1}$ is
+
+$$ V_{C1,min} = 30 \exp\left( \frac{-0.00417 - 0.00536}{100 \cdot 10^{-6} \cdot 395} \right) \approx \SI{23.566}{\volt}$$
+
+Thus taking the average we obtain $ \langle V_{C1} \rangle = \frac{23.566 + 30}{2} \approx \SI{26.75}{\volt}$. Which I will approximate it as \SI{26.5}{\volt} because the actual peak value of the sinusoidal is actually less than \SI{30}{\volt}.
+
+\subsection{Regulator}
+We have to calculate our requried regulated voltage $V_{dd}$. My student ID is 260681986 so $\alpha = 8.6$.
+
+$$V_{dd} = \lfloor 10 + 8.6 \rfloor = 18$$
+
+This will also be the output of the circuit as well as the final regulated supply for the amplifier. We will model our zener as operating in the break down region.
+
+\begin{figure}[h]
+	\centering
+	\input regulator.m4.tex
+	\caption{Regulator Configuration}
+	\label{regconfig}
+\end{figure}
+
+The load regulation is required to be greater than \SI{-5}{\milli\volt\per\milli\ampere}. We select \SI{4}{\ohm} to satisfy this. Then we can establish our line regulation using $R_1$
+
+$$ -r_z > \SI{-5}{\milli\volt\per\milli\ampere} \Longrightarrow r_z < \SI{5}{\ohm} $$
+
+$$ \frac{\SI{4}{\ohm}}{\SI{4}{\ohm} + R_1} > \SI[per-mode=symbol]{10}{\milli\volt\per\volt} \Longrightarrow R_1 < \SI{396}{\ohm} $$
+
+Select $R_1 = \SI{395}{\ohm}$ to satisfy this. If I had chosen a lower value for $r_z$, we would have a lower value for $R_1$ and too much current would have entered the diode and potentially caused it to burn. Thus we choose the highest possible value, to limit the current, while also meeting the load regulation specification.
+
+\begin{figure}[H]
+	\centering
+	\input zenermodel.m4.tex
+	\caption{Regulator Model\cite{roberts_2017_diodes}}
+	\label{zenermodel}
+\end{figure}
+
+The last value that needs to be selected is $v_{zo}$. Assuming a load current draw of $I_L \approx I_D$. We can solve for $v_{zo} = \SI{17.914}{\volt}$ using $V_{C1} \approx \SI{26.5}{\volt}$ on average, according to the simulations.
+
+$$ v_{zo} \approx \SI{18}{\volt} - \SI{4}{\ohm}\left( \frac{ \SI{26.5}{\volt} - \SI{18}{\volt} } {\SI{395}{\ohm}} - \SI{40}{\micro\ampere} \right) \approx \SI{17.914}{\volt} $$
+
+Simulations will show that this value is sufficient. Thus we can replace the zener diode D5 with this model. However, for the purposes of illustration, we shall keep the zener diode symbol in our schematics.
+
+\subsection{Completed Power Supply}
+
+Combining all the above components to create our power supply.
+
+\begin{figure}[H]
+	\centering
+	\input powersupply2.m4.tex
+	\caption{Power Supply \cite{roberts_2017_diodes}}
+	\label{ps}
+\end{figure}
+
+The capacitor $C_2$ is a decoupling capacitor for the power supply. It will be used to smoothen out the ripples caused by $D5$.
+
+The final values for all the components are as follows
+\begin{enumerate}
+	\item $R_{sup} = \SI{0.3}{\kilo\ohm}$
+	\item $L_p = \SI{100}{\henry}$
+	\item $L_s = \SI{3.125}{\henry}$
+	\item $C_1 = \SI{100}{\micro\farad}$
+	\item $C_2 = \SI{10}{\pico\farad}$
+	\item $R_1 = \SI{395}{\ohm}$
+	\item $r_z = \SI{4}{\ohm}$
+	\item $v_{zo} = \SI{17.914}{\volt}$
+\end{enumerate}
+
+\section{Power Supply Simulations}
+Constructing the power supply in LTSPICE and connecting it the amplifer circuit we can observe the behaviour of the supply.
+
+\begin{figure}[H]
+	\centering
+	\caption{Plot of $V_{dd}$ against time}
+	\label{supplyplot}
+	\pgfplotstableread{ecse330project260681986.dat}{\spicedata}
+	\begin{tikzpicture}[scale=1]
+	\begin{axis}[
+	xtick distance = 0.02,
+	xlabel={Time since $t = \SI{1}{\second}$},
+	ytick distance = 0.01,
+	ylabel={$V_{dd}$ in Volts},
+	change x base,x SI prefix=milli,x unit=s,
+	ymin = 17.98,
+	ymax=18.02,
+	minor tick num = 2,
+	xmax = 0.04
+	]
+	\addplot [black,very thick] table [x={time}, y={V(vdd)}] {\spicedata};
+	\end{axis}
+	\end{tikzpicture}
+\end{figure}
+
+The ripples in the voltage are caused by the zener diode rapidly opening and closing. This is why the smoothing capacitor is needed, however SPICE does not show the smoothing. In an actual circuit we will see a constant voltage. Next we will plot the current though the zener diode D5, as $i_z$.
+
+\begin{figure}[H]
+	\centering
+	\caption{Plot of $i_{z}$ against time}
+	\label{izplot}
+	\pgfplotstableread{ecse330project260681986.dat}{\spicedata}
+	\begin{tikzpicture}[scale=1]
+	\begin{axis}[
+	xlabel={Time since $t = \SI{1}{\second}$},
+	ylabel={$i_{z}$},
+	xmajorgrids,ymajorgrids,
+	change x base,x SI prefix=milli,x unit=s,
+	change y base,y SI prefix=milli,y unit=A,
+	minor tick num = 2,
+	xmax = 0.02
+	]
+	\addplot [black,very thick] table [x={time}, y={I(Rz)}] {\spicedata};
+	\end{axis}
+	\end{tikzpicture}
+\end{figure}
+
+As can be seen from the above plots. $V_{dd}$ is approximately \SI{18}{\volt} and the current draw matches the expected value when $v_{zo}$ was calculated.
+
+\begin{figure}[H]
+	\centering
+	\caption{Plot of $V_{C1}$ against time}
+	\label{vc1plot}
+	\pgfplotstableread{ecse330project260681986.dat}{\spicedata}
+	\begin{tikzpicture}[scale=1]
+	\begin{axis}[
+	xlabel={Time since $t = \SI{1}{\second}$},
+	ylabel={$V_{C1}$},
+	xmajorgrids,ymajorgrids,
+	change x base,x SI prefix=milli,x unit=s,
+	y unit=V, ytick distance = 0.5,
+	minor tick num = 2,
+	xmax = 0.02
+	]
+	\addplot [black,very thick] table [x={time}, y={V(6)}] {\spicedata};
+	\end{axis}
+	\end{tikzpicture}
+\end{figure}
+
+As you can see in the above plot, the average value of $V_{C1}$ is \SI{26.5}{\volt}. Thus justifying our value for $v_{zo}$.
+
+Our predictions and calculations for the power supply performance are correct. The supply behaves extremely close to ideal and can handle a large range of loads.
+
+\section{Amplifier Simulations}
+The amplifier was tested using a \SI{100}{\hertz} signal. Higher frequencies will not suffer from attenuation and so will be at their most ideal value. Thus the greatest problems with gain should arise at lower frequencies. For all tests the amplifier was connected to the power supply I designed.
+\begin{figure}[H]
+	\centering
+	\caption{Plot of $V_{sig}$ against time, \SI{100}{\hertz}}
+	\label{vin100}
+	\pgfplotstableread{ecse330project260681986.dat}{\spicedata}
+	\begin{tikzpicture}[scale=1]
+	\begin{axis}[
+	xlabel={Time since $t = \SI{1}{\second}$},
+	ylabel={$V_{sig}$},
+	xmax = 0.02,
+	xmajorgrids,ymajorgrids,
+	ytick distance = 0.01,
+	change x base,x SI prefix=milli,x unit=s,
+	change y base,y SI prefix=milli,y unit=V,
+	]
+	\addplot [black,very thick] table [x={time}, y={V(11)}] {\spicedata};
+	\end{axis}
+	\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\caption{Plot of $V_{out}$ against time, \SI{100}{\hertz}}
+	\label{vout100}
+	\pgfplotstableread{ecse330project260681986.dat}{\spicedata}
+	\begin{tikzpicture}[scale=1]
+	\begin{axis}[
+	xlabel={Time since $t = \SI{1}{\second}$},
+	ylabel={$V_{out}$},
+	xmax = 0.02,
+	xmajorgrids,ymajorgrids,
+	change x base,x SI prefix=milli,x unit=s,
+	y unit=V, ytick distance = 0.5,
+	]
+	\addplot [black,very thick] table [x={time}, y={V(10)}] {\spicedata};
+	\end{axis}
+	\end{tikzpicture}
+\end{figure}
+
+From the above plot it can be see that the signal is inverted and has an effective gain of \SI[per-mode=symbol]{-37}{\volt\per\volt}. The value is higher than we predicted. This is due the \SI{10}{\pico\farad} capacitive load. $C_L$ acts like a short for AC signals thus reducing the effect of $R_L$.
+
+The low frequency signal's lack of attentuation is due to $C_S$ and $R_S$. These components extend the bandwidth by stabilising the voltage at $V_S$.Now I will analyse the circuit's performace for a high frequency signal.
+
+\begin{figure}[H]
+	\centering
+	\caption{Plot of $V_{sig}$ against time, \SI{10}{\kilo\hertz}}
+	\label{vin10k}
+	\pgfplotstableread{ecse330project260681986HighFreq.dat}{\spicedata}
+	\begin{tikzpicture}[scale=1]
+	\begin{axis}[
+	xlabel={Time since $t = \SI{1}{\second}$},
+	ylabel={$V_{sig}$},
+	xmax = 0.0002,
+	xmajorgrids,ymajorgrids,
+	ytick distance = 0.01,
+	change x base,x SI prefix=micro,x unit=s,
+	change y base,y SI prefix=milli,y unit=V,
+	]
+	\addplot [black,very thick] table [x={time}, y={V(11)}] {\spicedata};
+	\end{axis}
+	\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\caption{Plot of $V_{out}$ against time, \SI{10}{\kilo\hertz}}
+	\label{vout10k}
+	\pgfplotstableread{ecse330project260681986Highfreq.dat}{\spicedata}
+	\begin{tikzpicture}[scale=1]
+	\begin{axis}[
+	xlabel={Time since $t = \SI{1}{\second}$},
+	ylabel={$V_{out}$},
+	xmajorgrids,ymajorgrids,
+	xmax = 0.0002,
+	change x base,x SI prefix=micro,x unit=s,
+	y unit=V, ytick distance = 0.5
+	]
+	\addplot [black,very thick] table [x={time}, y={V(10)}] {\spicedata};
+	\end{axis}
+	\end{tikzpicture}
+\end{figure}
+
+The waveforms are nearly identical except for their frequencies. You can see thus that the amplifier has an effective bandwidth of \SI{9900}{\hertz}.
+
+\begin{figure}[H]
+	\centering
+	\caption{Frequency Response, $\frac{V_{out}}{V_{sig}}$}
+	\label{bodeplot}
+	\pgfplotstableread{ecse330project260681986BodePlot.dat}{\spicedata}
+	\begin{tikzpicture}[scale=1]
+	\begin{semilogxaxis}[
+	xmode = log,
+	xlabel={Frequency},
+	ylabel={Gain},
+	x unit=Hz,
+	xmajorgrids,
+	ytick distance = 0.2,
+	y unit=dB,
+	ymin= 29,
+	ymajorgrids,
+	]
+	\addplot [black,very thick] table [x={Freq.}, y={V(10)/V(11)}] {\spicedata};
+	\end{semilogxaxis}
+	\end{tikzpicture}
+\end{figure}
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation Results}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command, the
+% \label for the overall figure must come after \caption.
+% \hfil must be used as a separator to get equal spacing.
+% The subfigure.sty package works much the same way, except \subfigure is
+% used instead of \subfloat.
+%
+%\begin{figure*}[!t]
+%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
+%\label{fig_second_case}}}
+%\caption{Simulation results}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+
+
+% An example of a floating table. Note that, for IEEE style tables, the 
+% \caption command should come BEFORE the table. Table text will default to
+% \footnotesize as IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that IEEE does not put floats in the very first column - or typically
+% anywhere on the first page for that matter. Also, in-text middle ("here")
+% positioning is not used. Most IEEE journals use top floats exclusively.
+% Note that, LaTeX2e, unlike IEEE journals, places footnotes above bottom
+% floats. This can be corrected via the \fnbelowfloat command of the
+% stfloats package.
+
+
+
+\section{Conclusion}
+
+While an amplifier is quite easy to model and build with no load, the difficulty becomes quite apparent when applying a load. Due to changes in the current draw and additional attentuation from capacitive loads, constructing a reliable amplifier can become extremely complicated. Nonetheless, what has been created in this paper is an amplifier for a \SI{100}{\milli\volt} peak-to-peak sinusoidal signal. The amplifier's gain is consistent over the frequency range \SI{0.1}{\kilo\hertz} to \SI{10}{\kilo\hertz}. While at the very beginning the output the amplifier is saturated to \SI{18}{\volt}, within a second the output is within acceptable ranges. Hence if you were going to use this amplifier in a real circuit, I would allow for short warm up period. One second should be enough time for the capacitors to charge up and allow AC signals through.
+
+However, while this amplifier does work well, it also inverts the signal. This isn't an issue for the ADC however, as signal can be interpreted as inveretede by the microprocessor. However, for other analog operations this inversion is undesirable. Thus a multistage common source amplifier setup would be required to create a positive gain.
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+\listoffigures
+
+\appendices
+\section{Initial Conditions Omission}
+The initial conditions of the circuit do not matter as we are only interested in the long term behaviour of our circuit, but we can see that there is a warm up time for the circuit. This is the time taken for the capacitors to charge and reach their DC operating point. However, this information has been omitted because it was not deemed relevant and hence all graphs start at $t=1$.
+
+\section{Inverted Signal Output}
+After speaking to the TA, I was told that an inverted signal is not a problem and could be handled by the microcontroller. This is why no attempt has been made to remove the inversion.
+
+\section{MATLAB Code}
+\lstset{frame=single,basicstyle=\footnotesize}
+\lstinputlisting[language=matlab]{../CSASR_Calculations.m}
+
+\section{MATLAB Output}
+I selected the middle column of values.
+\lstset{frame=single,basicstyle=\footnotesize}
+\lstinputlisting{matlaboutput.txt}
+
+\section{SPICE Netlist}
+$V_{out}$ is node 10.
+\lstset{frame=single,basicstyle=\footnotesize}
+\lstinputlisting{../ecse330project260681986.cir}
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\bibliographystyle{unsrt}
+\bibliography{refs}
+
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+% that's all folks
+\end{document}
+
+
