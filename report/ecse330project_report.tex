@@ -520,9 +520,9 @@ In order to amplify a \SI{50}{\milli\volt} signal to \SI{2}{\volt} signal we nee
 
 We have to select the resistors to achieve the gain we need. The three design parameters are $V_D$, $V_G$, and $V_S$. 
 
-Using some intuition we can select $V_S$ to be small so as to approximate a regular common source amplifier. However, we cannot set it to zero otherwise we would have a degenerate amplifer. This makes the gain of the circuit highly susceptible to changes in temperature. Additionally, $R_S$ and $C_S$ improve the bandwidth of the amplifier. Without these components, signals at low frequencies would experience greater attentuation that those at higher frequencies.
+Using some intuition we can select $V_S$ to be small so as to approximate a regular common source amplifier. However, we cannot set it to zero otherwise we would have a degenerate amplifier. This makes the gain of the circuit highly susceptible to changes in temperature. Additionally, $R_S$ and $C_S$ improve the bandwidth of the amplifier. Without these components, signals at low frequencies would experience greater attenuation that those at higher frequencies.
 
-The capacitor $C_3$ is a coupling capacitor and we select a standard value of \SI{1}{\micro\farad}. This is a good trade-off between the RC constant of the coupling capacitor and the attentuation at lower frequencies.
+The capacitor $C_3$ is a coupling capacitor and we select a standard value of \SI{1}{\micro\farad}. This is a good trade-off between the RC constant of the coupling capacitor and the attenuation at lower frequencies.
 
 The resistors $R_a$ and $R_b$ are used to setup the DC bias point of the MOSFET's gate. I will show how I selected the values for these resistors as well as $R_D$ and $R_S$ using DC operating point analysis.
 
@@ -531,7 +531,7 @@ The first step is to establish $V_D$. Since the signal must be present between \
 
 Since I want to approximate a typical common source amplifier I will select $V_S = \SI{0.1}{\volt}$ This will provided sufficient compromise between degeneration and our approximation.
 
-The final step is to select $V_G$, our quiescient point. In order to facilitate this I have written a MATLAB script to calculate all possible arrangements of the component values for multiple value of $V_G$. Then we can select all solutions that produce a gain between \SI[per-mode=symbol]{40}{\volt\per\volt} and \SI[per-mode=symbol]{30}{\volt\per\volt}. The results of the compution are presented in the appendix. For the complete script and its original output, please see the appendix.
+The final step is to select $V_G$, our quiescent point. In order to facilitate this I have written a MATLAB script to calculate all possible arrangements of the component values for multiple value of $V_G$. Then we can select all solutions that produce a gain between \SI[per-mode=symbol]{40}{\volt\per\volt} and \SI[per-mode=symbol]{30}{\volt\per\volt}. The results of the computation are presented in the appendix. For the complete script and its original output, please see the appendix.
 
 We select $V_G = \SI{2.5758}{\volt}$. Now that we have our DC operating point established we can calculate the values of our resistors.
 
@@ -541,7 +541,7 @@ $$ R_D = \frac{V_{dd} - V_D}{I_D} \approx \SI{323.07}{\kilo\ohm} $$
 
 $$ R_S = \frac{V_S}{I_D} \approx \SI{2.524}{\kilo\ohm} $$
 
-For our bias resistors we have additional requirements. The input resistance of the amplifier must be greate than \SI{20}{\kilo\ohm}. Thus we must select $R_a$ and $R_b$ to satisfy these conditions.
+For our bias resistors we have additional requirements. The input resistance of the amplifier must be greater than \SI{20}{\kilo\ohm}. Thus we must select $R_a$ and $R_b$ to satisfy these conditions.
 
 $$ \left( \SI{18}{\volt} \left( \frac{R_b}{R_b + R_a} \right) = \SI{2.5758}{\volt} \right) \land \left( \frac{R_b R_a}{R_b + R_a} > \SI{20}{\kilo\ohm} \right) $$
 
@@ -574,7 +574,7 @@ The effective gain with a \SI{10}{\mega\ohm} load is
 
 $$ |G_l| = \frac{g_m r_o \left( R_D \mathbin{\|} R_L \right)}{\left( R_D \mathbin{\|} R_L \right) + R_S + r_o + g_m r_o R_S} \approx \SI{33.7486}{\volt\per\volt} $$
 
-This is only valid at low frequencies where the capacitor acts an open circuit. For extremely high frequencies the signal is attentuated. However, due to the addition of $C_S$ the attenuation will be negligible and we will observe this in the simulation section.
+This is only valid at low frequencies where the capacitor acts an open circuit. For extremely high frequencies the signal is attenuated. However, due to the addition of $C_S$ the attenuation will be negligible and we will observe this in the simulation section.
 
 Additionally, in the simulations, the signal fills the range \SI{2.1}{\volt} to \SI{5.8}{\volt} using this gain.
 
@@ -589,7 +589,7 @@ Mains power supply is provided at \SI{120}{\volt} \SI{60}{\hertz} rms. This corr
 
 $$ \sqrt{ \frac{L_p}{L_s}}  = \frac{V_p}{V_s} = \frac{169.7}{30} \approx 5.6597 $$
 
-To satisfy this we select inductances $L_p = \SI{100}{\henry}$ and $L_s = \SI{3.125}{\henry}$. This will ensure that the AC load from the mains supply mostly drops accross the primary coil. We also select a coupling coefficient $K = 1$.
+To satisfy this we select inductances $L_p = \SI{100}{\henry}$ and $L_s = \SI{3.125}{\henry}$. This will ensure that the AC load from the mains supply mostly drops across the primary coil. We also select a coupling coefficient $K = 1$.
 
 \begin{figure}[H]
 	\centering
@@ -601,7 +601,7 @@ To satisfy this we select inductances $L_p = \SI{100}{\henry}$ and $L_s = \SI{3.
 From the above figure, we can see that $V_p \approx V_{sup}$ due to the large inductance of the primary coil. Thus $V_s \approx \SI{30}{\volt} \sin(2\pi 60t)$. Assuming that $R_{sup} = \SI{300}{\ohm}$.
 
 \subsection{Rectifier and Filter}
-Now that we have a sufficient AC sinusoidal we now need to convert the AC components into DC components. The first step in this proces is rectification. We will use a full bridge rectifier.
+Now that we have a sufficient AC sinusoidal we now need to convert the AC components into DC components. The first step in this process is rectification. We will use a full bridge rectifier.
 
 \begin{figure}[H]
 	\centering
@@ -610,7 +610,7 @@ Now that we have a sufficient AC sinusoidal we now need to convert the AC compon
 	\label{rf1}
 \end{figure}
 
-The capacitor $C_1$ will be assigned a value of \SI{100}{\micro\farad}. This should proved sufficient stabilisation of the voltage for the next stage, regulation. The output of this circuit is $V_{C1}$ and the input is $V_S$.
+The capacitor $C_1$ will be assigned a value of \SI{100}{\micro\farad}. This should proved sufficient stabilization of the voltage for the next stage, regulation. The output of this circuit is $V_{C1}$ and the input is $V_S$.
 
 We can calculate the average value of $V_{C1}$ using the following method. The input sine wave is \SI{60}{\hertz}, hence if we take one quarter of the period, the capacitor will be discharging in this period.
 
@@ -618,7 +618,7 @@ $$ T_0 = \frac{1}{4 \cdot 60} \approx \SI{4.17}{\milli\second} $$
 
 $$ V_{C1} = 30 - \exp \left( \frac{-0.00417}{100 \cdot 10_{-6} \cdot 395} \right) \approx \SI{26.99435}{\volt} $$
 
-However, the capacitor will also be discharging on the upswing of the sinusoidal input, at least until it reahces \SI{26.99435}{\volt}. So we can calculate the time taken for this as
+However, the capacitor will also be discharging on the upswing of the sinusoidal input, at least until it reaches \SI{26.99435}{\volt}. So we can calculate the time taken for this as
 
 $$ 30 \sin\left( 2 \pi 60 t \right) = 26.99435 \Longrightarrow t \approx \SI{5.364}{\milli\second} $$
 
@@ -629,7 +629,7 @@ $$ V_{C1,min} = 30 \exp\left( \frac{-0.00417 - 0.00536}{100 \cdot 10^{-6} \cdot 
 Thus taking the average we obtain $ \langle V_{C1} \rangle = \frac{23.566 + 30}{2} \approx \SI{26.75}{\volt}$. Which I will approximate it as \SI{26.5}{\volt} because the actual peak value of the sinusoidal is actually less than \SI{30}{\volt}.
 
 \subsection{Regulator}
-We have to calculate our requried regulated voltage $V_{dd}$. My student ID is 260681986 so $\alpha = 8.6$.
+We have to calculate our required regulated voltage $V_{dd}$. My student ID is 260681986 so $\alpha = 8.6$.
 
 $$V_{dd} = \lfloor 10 + 8.6 \rfloor = 18$$
 
@@ -674,7 +674,7 @@ Combining all the above components to create our power supply.
 	\label{ps}
 \end{figure}
 
-The capacitor $C_2$ is a decoupling capacitor for the power supply. It will be used to smoothen out the ripples caused by $D5$.
+The capacitor $C_2$ is a decoupling capacitor for the power supply. It will be used to smooth out the ripples caused by $D5$.
 
 The final values for all the components are as follows
 \begin{enumerate}
@@ -689,7 +689,7 @@ The final values for all the components are as follows
 \end{enumerate}
 
 \section{Power Supply Simulations}
-Constructing the power supply in LTSPICE and connecting it the amplifer circuit we can observe the behaviour of the supply.
+Constructing the power supply in LTSPICE and connecting it the amplifier circuit we can observe the behaviour of the supply.
 
 \begin{figure}[H]
 	\centering
@@ -804,7 +804,7 @@ The amplifier was tested using a \SI{100}{\hertz} signal. Higher frequencies wil
 
 From the above plot it can be see that the signal is inverted and has an effective gain of \SI[per-mode=symbol]{-37}{\volt\per\volt}. The value is higher than we predicted. This is due the \SI{10}{\pico\farad} capacitive load. $C_L$ acts like a short for AC signals thus reducing the effect of $R_L$.
 
-The low frequency signal's lack of attentuation is due to $C_S$ and $R_S$. These components extend the bandwidth by stabilising the voltage at $V_S$.Now I will analyse the circuit's performace for a high frequency signal.
+The low frequency signal's lack of attenuation is due to $C_S$ and $R_S$. These components extend the bandwidth by stabilizing the voltage at $V_S$.Now I will analyze the circuit's performance for a high frequency signal.
 
 \begin{figure}[H]
 	\centering
@@ -958,9 +958,9 @@ The waveforms are nearly identical except for their frequencies. You can see thu
 
 \section{Conclusion}
 
-While an amplifier is quite easy to model and build with no load, the difficulty becomes quite apparent when applying a load. Due to changes in the current draw and additional attentuation from capacitive loads, constructing a reliable amplifier can become extremely complicated. Nonetheless, what has been created in this paper is an amplifier for a \SI{100}{\milli\volt} peak-to-peak sinusoidal signal. The amplifier's gain is consistent over the frequency range \SI{0.1}{\kilo\hertz} to \SI{10}{\kilo\hertz}. While at the very beginning the output the amplifier is saturated to \SI{18}{\volt}, within a second the output is within acceptable ranges. Hence if you were going to use this amplifier in a real circuit, I would allow for short warm up period. One second should be enough time for the capacitors to charge up and allow AC signals through.
+While an amplifier is quite easy to model and build with no load, the difficulty becomes quite apparent when applying a load. Due to changes in the current draw and additional attenuation from capacitive loads, constructing a reliable amplifier can become extremely complicated. Nonetheless, what has been created in this paper is an amplifier for a \SI{100}{\milli\volt} peak-to-peak sinusoidal signal. The amplifier's gain is consistent over the frequency range \SI{0.1}{\kilo\hertz} to \SI{10}{\kilo\hertz}. While at the very beginning the output the amplifier is saturated to \SI{18}{\volt}, within a second the output is within acceptable ranges. Hence if you were going to use this amplifier in a real circuit, I would allow for short warm up period. One second should be enough time for the capacitors to charge up and allow AC signals through.
 
-However, while this amplifier does work well, it also inverts the signal. This isn't an issue for the ADC however, as signal can be interpreted as inveretede by the microprocessor. However, for other analog operations this inversion is undesirable. Thus a multistage common source amplifier setup would be required to create a positive gain.
+However, while this amplifier does work well, it also inverts the signal. This isn't an issue for the ADC however, as signal can be interpreted as inverted by the microprocessor. However, for other analog operations this inversion is undesirable. Thus a multistage common source amplifier setup would be required to create a positive gain.
 
 
 % if have a single appendix:
